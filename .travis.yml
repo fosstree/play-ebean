@@ -31,7 +31,7 @@ install:
 
 script: $SCRIPT
 
-after_success: bash <(curl -s https://codecov.io/bash)
+#after_success: bash <(curl -s https://codecov.io/bash)
 
 cache:
   directories:
@@ -43,8 +43,8 @@ before_cache:
   - find $HOME/.ivy2 -name "ivydata-*.properties" -delete
   - find $HOME/.sbt -name "*.lock" -delete
 
-notifications:
-  webhooks:
-    urls: https://webhooks.gitter.im/e/d2c8a242a2615f659595
-    on_success: always
-    on_failure: always
+#notifications:
+#  webhooks:
+#    urls: https://webhooks.gitter.im/e/d2c8a242a2615f659595
+#    on_success: always
+#    on_failure: always

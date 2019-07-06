@@ -4,9 +4,9 @@ import interplay.ScalaVersions._
 val Versions = new {
   val play: String = playVersion(sys.props.getOrElse("play.version", "2.7.0"))
   val playEnhancer = "1.2.2"
-  val ebean = "11.39.1"
-  val ebeanAgent = "11.39.1"
-  val typesafeConfig = "1.3.3"
+  val ebean = "11.41.1"
+  val ebeanAgent = "11.41.1"
+  val typesafeConfig = "1.3.4"
 }
 
 val PreviousVersion = "5.0.1"
@@ -21,7 +21,7 @@ lazy val root = project
   .aggregate(core, plugin)
   .settings(
     name := "play-ebean-root",
-    releaseCrossBuild := false
+    organization := "io.github.fosstree"
   )
 
 lazy val core = project
@@ -31,6 +31,7 @@ lazy val core = project
   .settings(
     name := "play-ebean",
     crossScalaVersions := Seq(scala211, scala212, scala213),
+    organization := "io.github.fosstree",
     libraryDependencies ++= playEbeanDeps,
     compile in Compile := enhanceEbeanClasses(
       (dependencyClasspath in Compile).value,
@@ -46,7 +47,7 @@ lazy val plugin = project
   .enablePlugins(PlaySbtPlugin)
   .settings(
     name := "sbt-play-ebean",
-    organization := "com.typesafe.sbt",
+    organization := "io.github.fosstree",
     libraryDependencies ++= sbtPlayEbeanDeps,
 
     libraryDependencies ++= Seq(
