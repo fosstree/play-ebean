@@ -21,7 +21,7 @@ lazy val root = project
   .aggregate(core, plugin)
   .settings(
     name := "play-ebean-root",
-    organization := "io.github.fosstree"
+    releaseCrossBuild := false
   )
 
 lazy val core = project
@@ -59,7 +59,12 @@ lazy val plugin = project
     scriptedLaunchOpts ++= Seq("-Dplay-ebean.version=" + version.value),
     scriptedDependencies := {
       val () = publishLocal.value
-    }
+    },
+
+    sbtPlugin := true,
+    publishMavenStyle := false,
+    bintrayRepository := "sbt-plugins",
+    bintrayOrganization := Some("fosstree")
   )
 
 playBuildRepoName in ThisBuild := "play-ebean"
